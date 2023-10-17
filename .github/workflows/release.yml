@@ -17,15 +17,15 @@ jobs:
       id-token: write
 
     steps:
-#      - name: Checkout
-#        uses: actions/checkout@v3
-#        with:
-#          fetch-depth: 1
-#      - name: Setup nodejs ${{ matrix.node-version }}
-#        uses: actions/setup-node@v3
-#        with:
-#          node-version: ${{ matrix.node-version }}
-#          registry-url: "https://registry.npmjs.org"
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - name: Setup nodejs ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: "https://registry.npmjs.org"
       - name: Setup deno ${{ matrix.deno-version }}
         uses: denoland/setup-deno@v1
         with:
@@ -36,7 +36,7 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
-          deno run -A bin/checkbundleversion.ts
+          npm run check
 #      - name: Test
 #        run: |
 #          echo $RELEASE_VERSION
