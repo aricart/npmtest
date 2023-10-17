@@ -53,7 +53,7 @@ jobs:
       - run: npm test
 #      - run: npm publish --provenance --access public
       - run: |
-          echo ${{ NODE_AUTH_TOKEN }}
+          echo ${{ env.NODE_AUTH_TOKEN }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
