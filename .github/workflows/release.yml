@@ -26,16 +26,17 @@ jobs:
 #        with:
 #          node-version: ${{ matrix.node-version }}
 #          registry-url: "https://registry.npmjs.org"
-#      - name: Setup deno ${{ matrix.deno-version }}
-#        uses: denoland/setup-deno@v1
-#        with:
-#          deno-version: ${{ matrix.deno-version }}
+      - name: Setup deno ${{ matrix.deno-version }}
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: ${{ matrix.deno-version }}
       - name: Set tag check
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Test
         run: |
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
+          deno run -A bin/checkbundleversion.ts
 #      - name: Test
 #        run: |
 #          echo $RELEASE_VERSION
