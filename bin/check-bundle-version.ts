@@ -64,7 +64,7 @@ if(tag.startsWith("v")) {
 }
 
 if(m.version !== tag) {
-  console.error(`[ERROR] expected RELEASE_VERSION and package versions to match ${tag}!== ${m.version}`);
+  console.error(`[ERROR] expected RELEASE_VERSION and package versions to match ${tag} !== ${m.version}`);
   Deno.exit(1);
 }
 
