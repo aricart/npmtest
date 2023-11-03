@@ -13,10 +13,41 @@
  * limitations under the License.
  */
 
-import {
-  compare,
-  parseSemVer,
-} from "https://raw.githubusercontent.com/nats-io/nats.deno/main/nats-base-client/semver.ts";
+export type SemVer = { major: number; minor: number; micro: number; qualifier: number };
+export function parseSemVer(
+    s = "",
+): SemVer {
+  const m = s.match(/(\d+).(\d+).(\d+)(.*)/);
+  if (m) {
+    let qualifier = 0;
+    if(m[4] !== null) {
+      const mm = m[4].match(/(\d+)/);
+      if(mm) {
+        qualifier = parseInt(mm[1])
+      }
+    }
+    return {
+      major: parseInt(m[1]),
+      minor: parseInt(m[2]),
+      micro: parseInt(m[3]),
+      qualifier
+    };
+  }
+  throw new Error(`'${s}' is not a semver value`);
+}
+export function compare(a: SemVer, b: SemVer): number {
+  if (a.major < b.major) return -1;
+  if (a.major > b.major) return 1;
+  if (a.minor < b.minor) return -1;
+  if (a.minor > b.minor) return 1;
+  if (a.micro < b.micro) return -1;
+  if (a.micro > b.micro) return 1;
+  if (a.qualifier < b.qualifier) return -1;
+  if (a.qualifier > b.qualifier) return 1;
+
+  return 0;
+}
+
 
 const SRC = "src/node_transport.ts";
 async function getPackageVersion(): Promise<string> {
