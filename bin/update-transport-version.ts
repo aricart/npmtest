@@ -19,14 +19,11 @@ export function parseSemVer(
 ): SemVer {
   const m = s.match(/(\d+).(\d+).(\d+)(.*)/);
   if (m) {
-    let qualifier = 0;
+    let qualifier = Number.MAX_SAFE_INTEGER;
     if(m[4] !== null) {
       const mm = m[4].match(/(\d+)/);
       if(mm) {
         qualifier = parseInt(mm[1]);
-      }
-      if (qualifier === 0) {
-        qualifier = Number.MAX_SAFE_INTEGER;
       }
     }
     return {
