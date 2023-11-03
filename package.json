@@ -1,6 +1,6 @@
 {
   "name": "arnpmtest",
-  "version": "0.0.13-1",
+  "version": "0.0.13",
   "description": "",
   "main": "index.js",
   "scripts": {
