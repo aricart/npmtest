@@ -23,7 +23,10 @@ export function parseSemVer(
     if(m[4] !== null) {
       const mm = m[4].match(/(\d+)/);
       if(mm) {
-        qualifier = parseInt(mm[1])
+        qualifier = parseInt(mm[1]);
+      }
+      if (qualifier === 0) {
+        qualifier = Number.MAX_SAFE_INTEGER;
       }
     }
     return {
