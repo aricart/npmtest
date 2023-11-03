@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-export type SemVer = { major: number; minor: number; micro: number; qualifier: number };
-export function parseSemVer(
+type SemVer = { major: number; minor: number; micro: number; qualifier: number };
+function parseSemVer(
     s = "",
 ): SemVer {
   const m = s.match(/(\d+).(\d+).(\d+)(.*)/);
@@ -35,7 +35,7 @@ export function parseSemVer(
   }
   throw new Error(`'${s}' is not a semver value`);
 }
-export function compare(a: SemVer, b: SemVer): number {
+function compare(a: SemVer, b: SemVer): number {
   if (a.major < b.major) return -1;
   if (a.major > b.major) return 1;
   if (a.minor < b.minor) return -1;
