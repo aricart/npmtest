@@ -7,7 +7,9 @@
     "test": "echo \"done testing\" && exit 0",
     "check": "deno run --allow-all bin/check-bundle-version.ts",
     "version": "deno run -A bin/update-transport-version.ts && git add src/node_transport.ts",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "bump-qualifier": "npm version prerelease --no-commit-hooks --no-git-tag-version",
+    "bump-release": "npm version patch --no-commit-hooks --no-git-tag-version"
   },
   "repository": {
     "type": "git",
