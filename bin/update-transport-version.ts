@@ -13,16 +13,21 @@
  * limitations under the License.
  */
 
-type SemVer = { major: number; minor: number; micro: number; qualifier: number };
+type SemVer = {
+  major: number;
+  minor: number;
+  micro: number;
+  qualifier: number;
+};
 function parseSemVer(
-    s = "",
+  s = "",
 ): SemVer {
   const m = s.match(/(\d+).(\d+).(\d+)(.*)/);
   if (m) {
     let qualifier = Number.MAX_SAFE_INTEGER;
-    if(m[4] !== null) {
+    if (m[4] !== null) {
       const mm = m[4].match(/(\d+)/);
-      if(mm) {
+      if (mm) {
         qualifier = parseInt(mm[1]);
       }
     }
@@ -30,7 +35,7 @@ function parseSemVer(
       major: parseInt(m[1]),
       minor: parseInt(m[2]),
       micro: parseInt(m[3]),
-      qualifier
+      qualifier,
     };
   }
   throw new Error(`'${s}' is not a semver value`);
@@ -47,7 +52,6 @@ function compare(a: SemVer, b: SemVer): number {
 
   return 0;
 }
-
 
 const SRC = "src/node_transport.ts";
 async function getPackageVersion(): Promise<string> {
