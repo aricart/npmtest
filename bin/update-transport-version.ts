@@ -64,7 +64,7 @@ try {
 
   if (compare(pkg, src) <= 0) {
     throw new Error(
-      `package version is not greater than source expected ${pv} > ${sv}`,
+      `package version is not greater than source was expected ${pv} > ${sv}`,
     );
   }
 
