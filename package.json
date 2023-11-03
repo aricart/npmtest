@@ -1,15 +1,18 @@
 {
   "name": "arnpmtest",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"done testing\" && exit 0",
-    "check": "deno run --allow-all bin/check-bundle-version.ts"
-  },  "repository": {
-  "type": "git",
-  "url": "git@github.com:aricart/npmtest.git"
-},
+    "check": "deno run --allow-all bin/check-bundle-version.ts",
+    "preversion": "deno run -A bin/check-bundle-version.ts",
+    "version": "deno run -A bin/update-transport-version.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:aricart/npmtest.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC"

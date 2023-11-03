@@ -54,21 +54,24 @@ if (m.version !== VERSION) {
 }
 
 let tag = Deno.env.get("RELEASE_VERSION");
-if(!tag) {
-  console.error(`[ERROR] expected RELEASE_VERSION to be set in the environment`);
+if (!tag) {
+  console.error(
+    `[ERROR] expected RELEASE_VERSION to be set in the environment`,
+  );
   Deno.exit(1);
 }
 
-if(tag.startsWith("v")) {
+if (tag.startsWith("v")) {
   tag = tag.substring(1);
 }
 
-if(m.version !== tag) {
-  console.error(`[ERROR] expected RELEASE_VERSION and package versions to match ${tag} !== ${m.version}`);
+if (m.version !== tag) {
+  console.error(
+    `[ERROR] expected RELEASE_VERSION and package versions to match ${tag} !== ${m.version}`,
+  );
   Deno.exit(1);
 }
 
 console.log(`[OK] RELEASE_VERSION and package versions match ${tag}`);
 
 Deno.exit(0);
-
